@@ -1,0 +1,18 @@
+services:
+  audio_service:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: audio_service
+    working_dir: /app
+    volumes:
+      - type: bind
+        source: "/mnt/d/models"
+        target: /models
+      - type: bind
+        source: "/mnt/d/var/endpoints"
+        target: /endpoints
+    env_file:
+      - .env
+    ports:
+      - "8000:8000"
